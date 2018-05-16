@@ -1,0 +1,52 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/task?characterEncoding=utf-8
+    username: root
+    password: root
+    initialSize: 1
+    minIdle: 1
+    maxActive: 20
+    maxWait: 60000
+    validationQuery: select 'x'
+    testOnBorrow: false
+    testOnReturn: false
+    testWhileIdle: true
+    minEvictableIdleTimeMillis: 25200000
+    timeBetweenEvictionRunsMillis: 60000
+    removeAbandoned: true
+    removeAbandonedTimeout: 1800
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    logAbandoned: true
+    filters: stat
+    
+  redis:
+    database: 2
+    host: localhost
+    port: 6379
+#    password:
+    pool:
+      max-active: 8
+      max-wait: 1
+      max-idle: 8
+      min-idle: 0
+      timeout: 0
+  
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.szy.task.model
+    
+logging:
+  level:
+    com.szy.note:
+      DEBUG
+      
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+    

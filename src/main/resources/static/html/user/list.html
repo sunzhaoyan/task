@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户</title>
+    <script src="../../js/axios.js"></script>
+    <script src="../../js/vue.js"></script>
+</head>
+<body>
+
+<div id="user">
+    <table>
+        <thead>
+        <th>序号</th>
+        <th>用户</th>
+        <th>密码</th>
+        </thead>
+        <tbody>
+        <tr v-for="(user, index) in users">
+            <td>{{index+1}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.password}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+<script>
+
+    var users = [{name: 'szy', password: '123'}];
+
+    var vu = new Vue({
+        el: '#user',
+        data: {
+            users: users
+        }
+    });
+
+    axios.get('/user').then(function (response) {
+        console.dir(response.data);
+        vu.$data.users = response.data;
+    });
+</script>
+</html>
